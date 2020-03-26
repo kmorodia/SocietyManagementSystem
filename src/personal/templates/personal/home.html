@@ -2,19 +2,80 @@
 
 
 {% block content %}
+<style type="text/css">
 
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Housing Society Management System</h1>
-  <p class="lead">Please register to the portal for your residential society</p>
-</div>
-<hr>
+	@media (max-width: 768px) { 
+		.right-column{
+			margin-left: 0px;
+		}
+	}
 
+	@media (min-width: 768px) { 
+		.right-column{
+			margin-left: 20px;
+		}
+	}
+
+	.blog-post-container{
+		background-color: #fff;
+		margin-bottom: 20px;
+		width: 100%;
+	}
+	.create-post-bar{
+		background-color: #fff;
+		margin-bottom:20px;
+	}
+
+	.left-column{
+		padding:0px;
+	}
+
+	.right-column{
+		padding:0px;
+	}
+
+</style>
 <div class="container">
-	<div class="d-flex flex-column">
-		<h4>Registered users:</h1>
-		{% for user in accounts %}
-			<p>{{user}}</p>
-		{% endfor %}
+	<div class="row">
+
+		<!-- Top 'create post' bar -->
+		<div class="create-post-bar d-lg-none col-lg-7 offset-lg-1" style="border: 1px solid #000;">
+			<a href="{% url 'notice:create' %}">Create post</a>
+		</div>
+		<!-- end Top 'create post' bar -->
+
+		<!-- blog feed -->
+		<div class="left-column col-lg-7 offset-lg-1" style="border: 1px solid #000;">
+			
+			<div class="blog-post-container">
+				<p>Thingy</p>
+			</div>
+			
+			<div class="blog-post-container">
+				<p>Thingy</p>
+			</div>
+
+			<div class="blog-post-container">
+				<p>Thingy</p>
+			</div>
+
+		</div>
+		<!-- end blog feed -->
+
+
+		<!-- Right 'create post' column  -->
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column" style="border: 1px solid #000;">
+
+			<div class="create-post-bar">
+				<p>Stuff</p>
+				<p>Stuff</p>
+				<p>Stuff</p>
+				<p><a href="{% url 'notice:create' %}">Create post</a></p>
+			</div>
+		
+		</div>
+		<!-- end Right 'create post' column  -->
+
 	</div>
 </div>
 

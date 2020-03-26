@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from account.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 
+
 def registration_view(request):
 	context = {}
 	if request.POST:
@@ -51,6 +52,7 @@ def login_view(request):
 
 	context['login_form'] = form
 
+	# print(form)
 	return render(request, "account/login.html", context)
 
 
@@ -64,14 +66,14 @@ def account_view(request):
 		form = AccountUpdateForm(request.POST, instance=request.user)
 		if form.is_valid():
 			form.initial = {
-				"email": request.POST['email'], 
-				"username": request.POST['username'],
+					"email": request.POST['email'],
+					"username": request.POST['username'],
 			}
 			form.save()
 			context['success_message'] = "Updated"
-	
 	else:
 		form = AccountUpdateForm(
+
 			initial={
 					"email": request.user.email, 
 					"username": request.user.username,
@@ -80,3 +82,7 @@ def account_view(request):
 
 	context['account_form'] = form
 	return render(request, "account/account.html", context)
+
+
+def must_authenticate_view(request):
+	return render(request, 'account/must_authenticate.html', {})
