@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<style type="text/css">
+	.card{
+		max-width: 700px;
+	}
+	.container{
+		padding:20px;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+
+		<!-- Blog Post -->
+		<div class="card m-auto">
+			<img class="card-img-top" src="{{notice_post.image.url}}">
+			<div class="card-body mt-2 mb-2">
+			  <h2 class="card-title">{{notice_post.title}}</h2>
+			  <p class="card-text">{{notice_post.body|safe}}</p>
+			</div>
+			<div class="card-footer text-muted">
+			  Posted on {{notice_post.date_published}} by {{notice_post.author}}
+			</div>
+		</div>
+
+	</div>
+</div>
+
+	
+
+{% endblock content %}

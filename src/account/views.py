@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+
 from account.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
+from notice.models import NoticePost
+
 
 
 def registration_view(request):
@@ -81,6 +84,10 @@ def account_view(request):
 			)
 
 	context['account_form'] = form
+
+	notice_posts = NoticePost.objects.filter(author=request.user)
+	context['notice_posts'] = notice_posts
+
 	return render(request, "account/account.html", context)
 
 

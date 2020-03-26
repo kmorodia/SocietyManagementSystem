@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from notice.models import NoticePost
 from notice.forms import CreateNoticePostForm
@@ -24,3 +24,11 @@ def create_notice_view(request):
 	context['form'] = form
 
 	return render(request, 'notice/create_notice.html', context)
+
+def detail_notice_view(request, slug):
+	
+	context = {}
+	notice_post = get_object_or_404(NoticePost, slug=slug)
+	context['notice_post'] = notice_post
+
+	return render(request, 'notice/detail_notice.html', context)

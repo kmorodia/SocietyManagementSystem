@@ -5,10 +5,10 @@
 
 <style type="text/css">
   .form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
   }
 
   .form-signin .form-control {
@@ -33,6 +33,12 @@
   }
   .h3{
     text-align: center;
+  }
+
+  .blog-posts{
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
   }
 </style>
 
@@ -72,5 +78,21 @@
   <a class="m-auto" href="{% url 'password_change' %}">Change password</a>
 </div>
 
+<div class="container mt-4 p-4">
+  <div class="row">
+    <div class="blog-posts">
+      <h3 class="mb-3 font-weight-normal">Notice posts:</h3>
+      {% if notice_posts %}
+        <ul class="list-group">
+        {% for post in notice_posts %}
+          <a href="{% url 'notice:detail' post.slug %}" style="text-decoration: none;"><li class="list-group-item">{{post}}</li></a>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>You have created no notices. You can create one. <a href="{% url 'notice:create' %}">here</a>.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
 {% endblock content %}
