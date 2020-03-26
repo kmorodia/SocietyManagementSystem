@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block content %}
 <style type="text/css">
@@ -17,7 +17,6 @@
 	}
 
 	.blog-post-container{
-		background-color: #fff;
 		margin-bottom: 20px;
 		width: 100%;
 	}
@@ -33,44 +32,43 @@
 	.right-column{
 		padding:0px;
 	}
-
+	.lead{
+		font-size: 17px;
+	}
 </style>
 <div class="container">
 	<div class="row">
 
-		<!-- Top 'create post' bar -->
-		<div class="create-post-bar d-lg-none col-lg-7 offset-lg-1" style="border: 1px solid #000;">
-			<a href="{% url 'notice:create' %}">Create post</a>
-		</div>
-		<!-- end Top 'create post' bar -->
-
 		<!-- blog feed -->
-		<div class="left-column col-lg-7 offset-lg-1" style="border: 1px solid #000;">
-			
-			<div class="blog-post-container">
-				<p>Notice</p>
-			</div>
-			
-			<div class="blog-post-container">
-				<p>Notice</p>
-			</div>
+		<div class="left-column col-lg-7 offset-lg-1">
 
-			<div class="blog-post-container">
-				<p>Notice</p>
+			<!-- Top 'create post' bar -->
+			<div class="d-lg-none mb-3">
+				<div class="card m-auto d-flex flex-column p-3">
+					<img class="img-fluid d-block m-auto pb-2" src="{% static 'codingwithmitch_logo.png' %}" width="72" height="72">
+					<p class="lead">Housing Society Management System</p>
+					<p class="m-auto"><a class="btn btn-primary" href="{% url 'notice:create' %}">Create post</a></p>
+				</div>
 			</div>
+			<!-- end Top 'create post' bar -->
 
+			<!-- Blog posts-->
+			{% for post in notice_posts %}
+				<div class="blog-post-container">
+					{% include 'notice/snippets/notice_post_snippet.html' with notice_post=post %}
+				</div>
+			{% endfor %}
+			<!-- End Blog posts-->
 		</div>
 		<!-- end blog feed -->
 
 
 		<!-- Right 'create post' column  -->
-		<div class="right-column col-lg-3 d-lg-flex d-none flex-column" style="border: 1px solid #000;">
+		<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
 
-			<div class="create-post-bar">
-				<p>Stuff</p>
-				<p>Stuff</p>
-				<p>Stuff</p>
-				<p><a href="{% url 'notice:create' %}">Create post</a></p>
+			<div class="card create-post-bar d-flex flex-column p-3">
+				<p class="lead">You can add a notice here.</p>
+				<p class="m-auto"><a class="btn btn-primary" href="{% url 'notice:create' %}">Create post</a></p>
 			</div>
 		
 		</div>

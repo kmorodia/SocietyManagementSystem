@@ -1,0 +1,33 @@
+<style type="text/css">
+	.card{
+		max-width: 700px;
+	}
+	.card-body{
+		padding: 20px;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+
+		<!-- Blog Post -->
+		<div class="card m-auto">
+			<a href="{% url 'notice:detail' post.slug %}">
+				<img class="card-img-top" src="{{notice_post.image.url}}">
+			</a>
+			
+			<div class="card-body mt-2 mb-2">
+				<a href="{% url 'notice:detail' post.slug %}">
+					<h2 class="card-title">{{notice_post.title}}</h2>
+				</a>
+				<p class="card-text">{{notice_post.body|safe|truncatechars:180}}</p>
+				{% if notice_post.author == request.user %}
+					<a href="{% url 'notice:create' %}" class="btn btn-primary">Update</a>
+				{% endif %}
+			</div>
+			<div class="card-footer text-muted">
+			  Updated on {{notice_post.date_updated}} by {{notice_post.author}}
+			</div>
+		</div>
+	</div>
+</div>
