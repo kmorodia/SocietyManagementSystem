@@ -21,9 +21,6 @@
 					<h2 class="card-title">{{notice_post.title}}</h2>
 				</a>
 				<p class="card-text">{{notice_post.body|safe|truncatechars:180}}</p>
-				{% if notice_post.author == request.user %}
-					<a href="{% url 'notice:create' %}" class="btn btn-primary">Update</a>
-				{% endif %}
 			</div>
 			<div class="card-footer text-muted">
 			  Updated on {{notice_post.date_updated}} by {{notice_post.author}}

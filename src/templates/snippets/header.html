@@ -20,6 +20,8 @@
   <h5 class="my-0 mr-md-auto font-weight-normal">
   	{% if request.user.is_authenticated %}
   		<p>Hello, {{request.user.username}}</p>
+  	{% else %}
+  		<p>Housing Society Management System</p>
   	{% endif %}
   </h5>
   <nav class="my-2 my-md-0 mr-md-3">
